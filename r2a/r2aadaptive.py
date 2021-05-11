@@ -34,7 +34,6 @@ class R2AAdaptive(IR2A):
         t = time.perf_counter() - self.request_time
         self.real_throughput_list.append(msg.get_bit_length() / t)
         self.real_throughput_list.append(msg.get_bit_length() / t)
-        print(self.real_throughput_list[-1])
 
         self.send_up(msg)
 
@@ -42,10 +41,6 @@ class R2AAdaptive(IR2A):
         self.request_time = time.perf_counter()
         self.calculate_estimated_throughput()
         self.calculate_constraint()
-        print("Nosso QI")
-        print(self.calculate_quality_id())
-        print("Nosso RC")
-        print(self.constraint_list[-1])
         msg.add_quality_id(self.calculate_quality_id())
         self.send_down(msg)
 
